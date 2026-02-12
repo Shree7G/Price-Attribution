@@ -708,7 +708,6 @@ if 'date_str' not in st.session_state:
 def main():
     # Sidebar
     with st.sidebar:
-        st.image("https://via.placeholder.com/200x80/1e40af/ffffff?text=Price+Attribution", use_container_width=True)
         st.title("Controls")
         
         # CSV Upload
