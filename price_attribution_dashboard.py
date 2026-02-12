@@ -1015,7 +1015,7 @@ def main():
         
         ### Step 5: Download PDF
         
-        1. Click **"📥 Download PDF Report"** in the sidebar
+        1. Click **" Download PDF Report"** in the sidebar
         2. Save the comprehensive PDF report for offline viewing or sharing
         
         ---
