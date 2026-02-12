@@ -858,7 +858,7 @@ def main():
             )
     
     # Main content area
-    tab1, tab2 = st.tabs([" Price Attribution Analysis", "📖 Instructions"])
+    tab1, tab2 = st.tabs([" Price Attribution Analysis", " Instructions"])
     
     with tab1:
         if st.session_state.analysis_complete:
