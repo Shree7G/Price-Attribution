@@ -4,46 +4,12 @@ A Streamlit-based web application for analyzing healthcare sector price movement
 
 ## Features
 
-- 📊 **Interactive Visualizations**: Heatmaps, bar charts, and distribution plots
-- 🔍 **Automated Web Search**: Real-time market intelligence for significant price movers
-- 🤖 **AI-Generated Insights**: Executive summaries powered by Claude
-- 📥 **PDF Export**: Professional reports ready for sharing
-- 🎯 **Subsector Analysis**: Drill-down into Provider, Pharma, Devices, Payors, and Tech sectors
+- **Interactive Visualizations**: Heatmaps, bar charts, and distribution plots
+- **Automated Web Search**: Real-time market intelligence for significant price movers
+- **AI-Generated Insights**: Executive summaries powered by Claude
+- **PDF Export**: Professional reports ready for sharing
+- **Subsector Analysis**: Drill-down into Provider, Pharma, Devices, Payors, and Tech sectors
 
-## Quick Start
-
-### 1. Installation
-
-```bash
-# Clone or download the repository
-cd price_attribution_dashboard
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 2. Configure API Key
-
-You need an Anthropic API key for web search and AI features.
-
-**Option A: Environment Variable**
-```bash
-export ANTHROPIC_API_KEY="sk-ant-your-key-here"
-```
-
-**Option B: Streamlit Secrets**
-Create `.streamlit/secrets.toml`:
-```toml
-ANTHROPIC_API_KEY = "sk-ant-your-key-here"
-```
-
-### 3. Run the App
-
-```bash
-streamlit run price_attribution_app.py
-```
-
-The app will open in your browser at `http://localhost:8501`
 
 ## Usage
 
