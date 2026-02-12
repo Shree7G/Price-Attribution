@@ -79,7 +79,6 @@ REQUIRED_COLUMNS = {
 
 st.set_page_config(
     page_title="Price Attribution Dashboard",
-    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -710,7 +709,7 @@ def main():
     # Sidebar
     with st.sidebar:
         st.image("https://via.placeholder.com/200x80/1e40af/ffffff?text=Price+Attribution", use_container_width=True)
-        st.title("📊 Controls")
+        st.title("Controls")
         
         # CSV Upload
         st.subheader("1. Upload Data")
@@ -724,7 +723,7 @@ def main():
             # Check filename
             if uploaded_file.name != "movers.csv":
                 st.markdown(
-                    '<div class="warning-box">⚠️ <b>Warning:</b> Expected filename is "movers.csv"</div>',
+                    '<div class="warning-box"><b>Warning:</b> Expected filename is "movers.csv"</div>',
                     unsafe_allow_html=True
                 )
             
@@ -738,7 +737,7 @@ def main():
                     st.session_state.uploaded_df = df
                     
                     st.markdown(
-                        f'<div class="success-box">✅ <b>Loaded successfully!</b><br>'
+                        f'<div class="success-box"><b>Loaded successfully!</b><br>'
                         f'Rows: {len(df):,}<br>'
                         f'Columns: {len(df.columns)}</div>',
                         unsafe_allow_html=True
@@ -752,14 +751,14 @@ def main():
                     
                 else:
                     st.markdown(
-                        f'<div class="error-box">❌ <b>Validation Failed</b><br>{message}</div>',
+                        f'<div class="error-box"><b>Validation Failed</b><br>{message}</div>',
                         unsafe_allow_html=True
                     )
                     st.session_state.uploaded_df = None
                     
             except Exception as e:
                 st.markdown(
-                    f'<div class="error-box">❌ <b>Error loading file</b><br>{str(e)}</div>',
+                    f'<div class="error-box"><b>Error loading file</b><br>{str(e)}</div>',
                     unsafe_allow_html=True
                 )
                 st.session_state.uploaded_df = None
@@ -770,7 +769,7 @@ def main():
         st.subheader("2. Run Analysis")
         
         # API Configuration
-        with st.expander("⚙️ API Settings", expanded=False):
+        with st.expander("API Settings", expanded=False):
             provider = st.selectbox(
                 "LLM Provider",
                 ["anthropic", "openai"],
@@ -793,7 +792,7 @@ def main():
             )
         
         run_button = st.button(
-            "🚀 Run Attribution Analysis",
+            "Run Attribution Analysis",
             type="primary",
             disabled=(st.session_state.uploaded_df is None),
             use_container_width=True
@@ -823,7 +822,7 @@ def main():
                     )
                     
                     st.session_state.analysis_complete = True
-                    st.success("✅ Analysis complete!")
+                    st.success(" Analysis complete!")
                     
                 except Exception as e:
                     st.error(f"Analysis failed: {e}")
@@ -845,7 +844,7 @@ def main():
             
             if pdf_data:
                 st.download_button(
-                    label="📥 Download PDF Report",
+                    label=" Download PDF Report",
                     data=pdf_data,
                     file_name=f"price_attribution_{st.session_state.date_str}.pdf",
                     mime="application/pdf",
@@ -853,14 +852,14 @@ def main():
                 )
         else:
             st.button(
-                "📥 Download PDF Report",
+                " Download PDF Report",
                 disabled=True,
                 use_container_width=True,
                 help="Run analysis first to enable PDF download"
             )
     
     # Main content area
-    tab1, tab2 = st.tabs(["📊 Price Attribution Analysis", "📖 Instructions"])
+    tab1, tab2 = st.tabs([" Price Attribution Analysis", "📖 Instructions"])
     
     with tab1:
         if st.session_state.analysis_complete:
@@ -869,11 +868,11 @@ def main():
             st.markdown(f'<div class="sub-header">Period ending: {st.session_state.date_str}</div>', unsafe_allow_html=True)
             
             # Executive Summary
-            st.markdown("### 📝 Executive Summary")
+            st.markdown("### Executive Summary")
             st.info(st.session_state.narrative)
             
             # Overall Metrics
-            st.markdown("### 📈 Overall Performance")
+            st.markdown("### Overall Performance")
             
             all_returns = [data['avg_return'] for data in st.session_state.subsector_data.values()]
             overall_avg = np.mean(all_returns)
@@ -891,16 +890,16 @@ def main():
                 st.metric("Total Names", len(st.session_state.uploaded_df))
             
             # Visualizations
-            st.markdown("### 📊 Performance Heatmap")
+            st.markdown("### Performance Heatmap")
             heatmap_fig = create_heatmap(st.session_state.uploaded_df)
             st.plotly_chart(heatmap_fig, use_container_width=True)
             
-            st.markdown("### 📊 Subsector Performance")
+            st.markdown("### Subsector Performance")
             bar_fig = create_subsector_bar_chart(st.session_state.subsector_data)
             st.plotly_chart(bar_fig, use_container_width=True)
             
             # Detailed Subsector Analysis
-            st.markdown("### 🔍 Detailed Subsector Analysis")
+            st.markdown("### Detailed Subsector Analysis")
             
             for subsector in sorted(st.session_state.subsector_data.keys(), 
                                    key=lambda s: st.session_state.subsector_data[s]['avg_return'], 
@@ -926,7 +925,7 @@ def main():
                     if subsector in st.session_state.subsector_explanations:
                         st.markdown(
                             f'<div class="explanation-box">'
-                            f'<b>🔎 Market Context:</b><br>{st.session_state.subsector_explanations[subsector]}'
+                            f'<b> Market Context:</b><br>{st.session_state.subsector_explanations[subsector]}'
                             f'</div>',
                             unsafe_allow_html=True
                         )
@@ -938,7 +937,7 @@ def main():
             st.markdown('<div class="main-header">Price Attribution Dashboard</div>', unsafe_allow_html=True)
             st.markdown('<div class="sub-header">Analyze healthcare sector price movements with AI-powered attribution</div>', unsafe_allow_html=True)
             
-            st.markdown("### 🚀 Get Started")
+            st.markdown("### Get Started")
             st.markdown("""
             1. **Upload** your movers.csv file using the sidebar
             2. **Configure** API settings if needed (optional)
@@ -946,10 +945,10 @@ def main():
             4. **Review** results and download PDF report
             """)
             
-            st.info("👈 Upload a CSV file in the sidebar to begin")
+            st.info("Upload a CSV file in the sidebar to begin")
             
             # Show sample data format
-            with st.expander("📋 View Sample Data Format"):
+            with st.expander(" View Sample Data Format"):
                 sample_data = {
                     'ticker': ['COMPANY A', 'COMPANY B', 'COMPANY C'],
                     'subsector': ['Provider', 'Pharma', 'Payors'],
@@ -961,7 +960,7 @@ def main():
                 st.dataframe(pd.DataFrame(sample_data), use_container_width=True)
     
     with tab2:
-        st.markdown('<div class="main-header">📖 Instructions</div>', unsafe_allow_html=True)
+        st.markdown('<div class="main-header"> Instructions</div>', unsafe_allow_html=True)
         
         st.markdown("""
         ## What This Tool Does
@@ -989,7 +988,7 @@ def main():
         
         ### Step 2: Configure Settings (Optional)
         
-        Expand **"⚙️ API Settings"** to customize:
+        Expand **" API Settings"** to customize:
         
         - **LLM Provider**: Choose between Anthropic (Claude) or OpenAI (GPT-4)
         - **API Key**: Provide your API key or use environment variable
@@ -997,7 +996,7 @@ def main():
         
         ### Step 3: Run Analysis
         
-        1. Click **"🚀 Run Attribution Analysis"** button
+        1. Click **" Run Attribution Analysis"** button
         2. The tool will:
            - Aggregate data by subsector
            - Search the web for market context
